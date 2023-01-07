@@ -14,7 +14,9 @@ public class InnerClassSingleton {
     }
 
     private InnerClassSingleton() {
-
+        if (InnerClassHolder.instance != null) {
+            throw new RuntimeException("单例不允许多个实例化");
+        }
     }
 
     public static InnerClassSingleton getInstance() {

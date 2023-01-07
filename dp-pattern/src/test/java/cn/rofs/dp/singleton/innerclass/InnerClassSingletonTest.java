@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <em>InnerClassSingletonTest</em>
  *
@@ -34,6 +37,19 @@ class InnerClassSingletonTest {
             InnerClassSingleton instance = InnerClassSingleton.getInstance();
             logger.info("instance:{}", instance.hashCode());
         }).start();
+    }
+
+    @Test
+    void Test3() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Constructor<InnerClassSingleton> declaredConstructor = InnerClassSingleton.class.getDeclaredConstructor();
+        declaredConstructor.setAccessible(true);
+        InnerClassSingleton innerClassSingleton = declaredConstructor.newInstance();
+
+        InnerClassSingleton instance = InnerClassSingleton.getInstance();
+
+        logger.info("innerClassSingleton:{}", innerClassSingleton.hashCode());
+        logger.info("instance:{}", instance.hashCode());
+
     }
 
 }
