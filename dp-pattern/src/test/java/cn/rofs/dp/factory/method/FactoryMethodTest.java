@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
  * @date 2023/01/07 20:01:22
  * @desc
  */
-class ApplicationTest {
+class FactoryMethodTest {
 
     @Test
     void test1() {
-        Application application = new ConCreateProductA();
-        Product product = application.getObject();
+        FactoryMethod factoryMethod = new ConCreateProductA();
+        Product product = factoryMethod.getObject();
         product.method1();
     }
 }

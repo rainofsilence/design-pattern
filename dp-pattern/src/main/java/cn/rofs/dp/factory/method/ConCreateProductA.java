@@ -7,7 +7,7 @@ package cn.rofs.dp.factory.method;
  * @date 2023/01/07 20:05:33
  * @desc
  */
-public class ConCreateProductA extends Application{
+public class ConCreateProductA extends FactoryMethod {
 
     @Override
     Product createProduct() {
