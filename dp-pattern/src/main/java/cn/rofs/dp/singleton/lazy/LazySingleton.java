@@ -9,15 +9,19 @@ package cn.rofs.dp.singleton.lazy;
  */
 public class LazySingleton {
 
-    private static LazySingleton instance;
+    private volatile static LazySingleton instance;
 
     private LazySingleton() {
 
     }
 
-    public synchronized static LazySingleton getInstance() {
+    public static LazySingleton getInstance() {
         if (instance == null) {
-            instance = new LazySingleton();
+            synchronized (LazySingleton.class) {
+                if (instance == null) {
+                    instance = new LazySingleton();
+                }
+            }
         }
         return instance;
     }
