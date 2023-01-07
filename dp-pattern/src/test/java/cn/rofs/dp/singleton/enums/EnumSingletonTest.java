@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <em>EnumSingletonTest</em>
  *
@@ -20,5 +23,17 @@ class EnumSingletonTest {
         EnumSingleton instance1 = EnumSingleton.INSTANCE;
         EnumSingleton instance2 = EnumSingleton.INSTANCE;
         logger.info("instance1 == instance2, {}", instance1 == instance2);
+    }
+
+    @Test
+    void test() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Constructor<EnumSingleton> declaredConstructor = EnumSingleton.class.getDeclaredConstructor(String.class, int.class);
+        declaredConstructor.setAccessible(true);
+        EnumSingleton instance = declaredConstructor.newInstance("INSTANCE", 0);
+
+        EnumSingleton enumSingleton = EnumSingleton.INSTANCE;
+
+        logger.info("instance == enumSingleton, {}", instance == enumSingleton);
+
     }
 }
